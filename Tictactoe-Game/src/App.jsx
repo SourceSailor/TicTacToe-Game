@@ -1,7 +1,7 @@
 import "./App.css";
 import Header from "./components/Header";
 import HeaderContent from "./components/HeaderContent";
-import GameBoard from "./components/GameBoard";
+import GameSection from "./components/GameSection";
 import "bootstrap/dist/css/bootstrap.min.css";
 import gameLogo from "./assets/game-logo.png";
 
@@ -14,7 +14,7 @@ function App() {
         </HeaderContent>
       </Header>
       <div>
-        <GameBoard />
+        <GameSection />
       </div>
     </>
   );
