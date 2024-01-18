@@ -1,9 +1,9 @@
 import "../styles/header-styles.css";
 
-export default function Header({ children }) {
+export default function Header({ children, image, ...props }) {
   return (
     <header>
-      <img className="header-img" src="game-logo.png" alt="" />
+      <img {...props} src={image} alt="" />
       {children}
     </header>
   );

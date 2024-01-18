@@ -3,11 +3,12 @@ import Header from "./components/Header";
 import HeaderContent from "./components/HeaderContent";
 import GameBoard from "./components/GameBoard";
 import "bootstrap/dist/css/bootstrap.min.css";
+import gameLogo from "./assets/game-logo.png";
 
 function App() {
   return (
     <>
-      <Header>
+      <Header className="header-img" image={gameLogo}>
         <HeaderContent>
           <h1>Tic-Tac-Toe</h1>
         </HeaderContent>
