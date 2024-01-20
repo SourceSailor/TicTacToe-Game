@@ -1,26 +1,6 @@
-import { useState } from "react";
 import "../styles/game-board.css";
 
-const initialData = [
-  { id: 1, symbol: "X" },
-  { id: 2, symbol: "X" },
-  { id: 3, symbol: "X" },
-  { id: 4, symbol: "X" },
-  { id: 5, symbol: "X" },
-  { id: 6, symbol: "X" },
-  { id: 7, symbol: "X" },
-  { id: 8, symbol: "X" },
-  { id: 9, symbol: "X" },
-];
-
-export default function GameBoard() {
-  const [boardTiles, setBoardTiles] = useState(initialData);
-
-  function onTileClick(id) {
-    setBoardTiles((oldData) =>
-      oldData.map((tile) => (tile.id === id ? { ...tile, symbol: 0 } : tile))
-    );
-  }
+export default function GameBoard({ boardTiles, onTileClick }) {
   return (
     <div className="d-flex row justify-content-center col-12">
       {boardTiles.map((tile) => (

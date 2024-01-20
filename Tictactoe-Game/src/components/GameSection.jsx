@@ -1,8 +1,39 @@
 import "../styles/game-board.css";
 import Player from "./Player";
 import GameBoard from "./GameBoard";
+import { useState } from "react";
+
+const initialData = [
+  { id: 1, symbol: null },
+  { id: 2, symbol: null },
+  { id: 3, symbol: null },
+  { id: 4, symbol: null },
+  { id: 5, symbol: null },
+  { id: 6, symbol: null },
+  { id: 7, symbol: null },
+  { id: 8, symbol: null },
+  { id: 9, symbol: null },
+];
 
 export default function GameSection() {
+  const [boardTiles, setBoardTiles] = useState(initialData);
+  const [activePlayer, setActivePlayer] = useState(true);
+
+  function onTileClick(id) {
+    setActivePlayer((oldData) => !oldData);
+    setBoardTiles((oldData) =>
+      oldData.map((tile, index) =>
+        tile.id === id
+          ? {
+              ...tile,
+              key: index,
+              symbol: !tile.symbol ? (activePlayer ? "X" : "O") : tile.symbol,
+            }
+          : tile
+      )
+    );
+  }
+
   return (
     <main className="game-board mx-auto justify-content-center p-5 mt-5 flex-column col-9">
       <section className="d-flex justify-content-center">
@@ -10,7 +41,7 @@ export default function GameSection() {
         <Player className={"px-2"} name="Player 2" symbol="O" />
       </section>
       <section className="d-flex justify-content-center mt-5 ">
-        <GameBoard />
+        <GameBoard boardTiles={boardTiles} onTileClick={onTileClick} />
       </section>
     </main>
   );
