@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../styles/game-board.css";
 
 export default function Player({ name, symbol, ...props }) {
   const [player, setPlayer] = useState({
@@ -32,7 +33,7 @@ export default function Player({ name, symbol, ...props }) {
 
       <span>{player.symbol}</span>
 
-      <button className="ms-2" onClick={editButton}>
+      <button className="ms-2 player-select-button" onClick={editButton}>
         {!player.isEditing ? "Edit" : "Save"}
       </button>
     </div>
