@@ -8,6 +8,7 @@ export default function GameBoard({ boardTiles, onTileClick }) {
           onClick={() => onTileClick(tile.id)}
           key={tile.id}
           className="tile-box col-3 me-3 mb-3"
+          disabled={tile.symbol !== null}
         >
           {tile.symbol}
         </button>

@@ -4,20 +4,32 @@ import GameBoard from "./GameBoard";
 import { useState } from "react";
 
 const initialData = [
-  { id: 1, symbol: null },
-  { id: 2, symbol: null },
-  { id: 3, symbol: null },
-  { id: 4, symbol: null },
-  { id: 5, symbol: null },
-  { id: 6, symbol: null },
-  { id: 7, symbol: null },
-  { id: 8, symbol: null },
-  { id: 9, symbol: null },
+  { id: 1, symbol: null, row: 1, col: 1 },
+  { id: 2, symbol: null, row: 1, col: 2 },
+  { id: 3, symbol: null, row: 1, col: 3 },
+  { id: 4, symbol: null, row: 2, col: 1 },
+  { id: 5, symbol: null, row: 2, col: 2 },
+  { id: 6, symbol: null, row: 2, col: 3 },
+  { id: 7, symbol: null, row: 3, col: 1 },
+  { id: 8, symbol: null, row: 3, col: 2 },
+  { id: 9, symbol: null, row: 3, col: 3 },
 ];
 
 export default function GameSection() {
   const [boardTiles, setBoardTiles] = useState(initialData);
   const [activePlayer, setActivePlayer] = useState(true);
+  const [player, setPlayer] = useState([
+    {
+      name: "Player 1",
+      symbol: "X",
+      isEditing: false,
+    },
+    {
+      name: "Player 2",
+      symbol: "O",
+      isEditing: false,
+    },
+  ]);
 
   function onTileClick(id) {
     setActivePlayer((oldData) => !oldData);
@@ -42,22 +54,49 @@ export default function GameSection() {
     setActivePlayer(true);
   }
 
+  function editPlayerName(index) {
+    setPlayer((oldData) => {
+      const updatedPlayers = [...oldData];
+      updatedPlayers[index] = {
+        ...updatedPlayers[index],
+        isEditing: !updatedPlayers[index].isEditing,
+      };
+      return updatedPlayers;
+    });
+  }
+
+  function savePlayerName(index, e) {
+    setPlayer((oldData) => {
+      const updatedPlayers = [...oldData];
+      updatedPlayers[index] = {
+        ...updatedPlayers[index],
+        name: e.target.value,
+      };
+      return updatedPlayers;
+    });
+  }
+
   return (
     <main className="game-board mx-auto justify-content-center p-5 mt-5 flex-column col-9">
       <section className="d-flex justify-content-center">
+        {/* -------- PLAYER 1 -------- */}
         <Player
           className={`px-5 player-select ${
             activePlayer ? "active-player" : undefined
           } `}
-          name="Player 1"
-          symbol="X"
+          player={player[0]}
+          editPlayerName={() => editPlayerName(0)}
+          savePlayerName={(e) => savePlayerName(0, e)}
         />
+
+        {/* -------- PLAYER 2 -------- */}
         <Player
           className={`px-5 player-select ${
             !activePlayer ? "active-player" : undefined
           }`}
-          name="Player 2"
-          symbol="O"
+          player={player[1]}
+          editPlayerName={() => editPlayerName(1)}
+          savePlayerName={(e) => savePlayerName(1, e)}
         />
       </section>
       <section className="d-flex justify-content-center mt-5 ">

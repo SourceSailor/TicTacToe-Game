@@ -1,21 +1,11 @@
-import { useState } from "react";
 import "../styles/game-board.css";
 
-export default function Player({ name, symbol, ...props }) {
-  const [player, setPlayer] = useState({
-    name: name,
-    symbol: symbol,
-    isEditing: false,
-  });
-
-  function editButton() {
-    setPlayer((oldData) => ({ ...oldData, isEditing: !oldData.isEditing }));
-  }
-
-  function updatePlayerName(e) {
-    setPlayer((oldData) => ({ ...oldData, name: e.target.value }));
-  }
-
+export default function Player({
+  editPlayerName,
+  player,
+  savePlayerName,
+  ...props
+}) {
   return (
     <div {...props}>
       {!player.isEditing ? (
@@ -27,13 +17,13 @@ export default function Player({ name, symbol, ...props }) {
           name="name"
           id="name"
           value={player.name}
-          onChange={updatePlayerName}
+          onChange={savePlayerName}
         />
       )}
 
       <span>{player.symbol}</span>
 
-      <button className="ms-2 player-select-button" onClick={editButton}>
+      <button className="ms-2 player-select-button" onClick={editPlayerName}>
         {!player.isEditing ? "Edit" : "Save"}
       </button>
     </div>
