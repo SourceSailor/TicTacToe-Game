@@ -1,9 +1,13 @@
 :disabled {
   color: white;
 }
+ul {
+  list-style-type: none;
+}
 
 .game-board {
   background-color: #414141;
+  box-shadow: 12px 10px 10px #52525286;
   color: white;
   border-radius: 10px;
 }
@@ -29,4 +33,20 @@
 .player-select-button {
   background-color: #80808000;
   color: #f0f8ff9f;
+}
+
+.player-turns-section {
+  color: white;
+  padding: 50px 0px;
+  margin-top: 29px;
+  border-radius: 10px;
+  background-color: #808080b7;
+  box-shadow: 8px 8px 10px #52525286;
+}
+
+.game-over {
+  height: 200px;
+  width: 200px;
+  background-color: #7a3636;
+  position: absolute;
 }

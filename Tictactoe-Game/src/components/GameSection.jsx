@@ -3,6 +3,7 @@ import Player from "./Player";
 import GameBoard from "./GameBoard";
 import { useState } from "react";
 import PlayerTurns from "./PlayerTurns";
+import GameOver from "./GameOver";
 import { winningCombinations } from "../utils";
 
 const initialData = [
@@ -53,6 +54,7 @@ export default function GameSection() {
       {
         row: boardTiles.find((tile) => tile.id === id).row,
         col: boardTiles.find((tile) => tile.id === id).col,
+        symbol: player[activePlayer ? 0 : 1].symbol,
         player: player[activePlayer ? 0 : 1].name,
       },
       ...prevTurn,
@@ -138,8 +140,8 @@ export default function GameSection() {
             editPlayerName={() => editPlayerName(1)}
             savePlayerName={(e) => savePlayerName(1, e)}
           />
-        </section>
-
+        </section>{" "}
+        <GameOver gameOver={winner} />
         <section className="d-flex justify-content-center mt-5 ">
           <GameBoard boardTiles={boardTiles} onTileClick={onTileClick} />
         </section>
@@ -147,9 +149,8 @@ export default function GameSection() {
           <button onClick={resetGame}>Reset Game</button>
         </div>
       </main>
-      <div>
-        <PlayerTurns gameTurns={gameTurns} />
-      </div>
+
+      <PlayerTurns gameTurns={gameTurns} />
     </>
   );
 }
