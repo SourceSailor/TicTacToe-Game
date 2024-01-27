@@ -1,8 +1,9 @@
 import "../styles/game-board.css";
 import Player from "./Player";
 import GameBoard from "./GameBoard";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PlayerTurns from "./PlayerTurns";
+import { winningCombinations } from "../utils";
 
 const initialData = [
   { id: 1, symbol: null, row: 1, col: 1 },
@@ -34,30 +35,19 @@ export default function GameSection() {
   ]);
 
   function onTileClick(id) {
-    {
-      /* -------- Active Player -------- */
-    }
     setActivePlayer((oldData) => !oldData);
 
-    {
-      /* -------- Board Tiles -------- */
-    }
-
     setBoardTiles((oldData) =>
-      oldData.map((tile, index) =>
+      oldData.map((tile) =>
         tile.id === id
           ? {
               ...tile,
-              key: index,
+              key: tile.id,
               symbol: !tile.symbol ? (activePlayer ? "X" : "O") : tile.symbol,
             }
           : tile
       )
     );
-
-    {
-      /* -------- Track Player Turns -------- */
-    }
 
     setGameTurns((prevTurn) => [
       {
@@ -68,10 +58,6 @@ export default function GameSection() {
       ...prevTurn,
     ]);
   }
-
-  useEffect(() => {
-    console.log(gameTurns);
-  }, [gameTurns]);
 
   function resetGame() {
     setBoardTiles((oldData) =>
@@ -103,6 +89,32 @@ export default function GameSection() {
     });
   }
 
+  let winner;
+
+  for (let combination of winningCombinations) {
+    const firstSquare = boardTiles.find(
+      (tile) =>
+        tile.row === combination[0].row && tile.col === combination[0].col
+    )?.symbol;
+    const secondSquare = boardTiles.find(
+      (tile) =>
+        tile.row === combination[1].row && tile.col === combination[1].col
+    )?.symbol;
+    const thirdSquare = boardTiles.find(
+      (tile) =>
+        tile.row === combination[2].row && tile.col === combination[2].col
+    )?.symbol;
+
+    if (
+      firstSquare &&
+      firstSquare === secondSquare &&
+      firstSquare === thirdSquare
+    ) {
+      winner = firstSquare;
+      break; // Exit the loop once a winner is found
+    }
+  }
+
   return (
     <>
       <main className="game-board mx-auto justify-content-center p-5 mt-5 flex-column col-9">
@@ -127,11 +139,12 @@ export default function GameSection() {
             savePlayerName={(e) => savePlayerName(1, e)}
           />
         </section>
+
         <section className="d-flex justify-content-center mt-5 ">
           <GameBoard boardTiles={boardTiles} onTileClick={onTileClick} />
         </section>
         <div className="mt-4">
-          <button onClick={resetGame}>Rest Game</button>
+          <button onClick={resetGame}>Reset Game</button>
         </div>
       </main>
       <div>
