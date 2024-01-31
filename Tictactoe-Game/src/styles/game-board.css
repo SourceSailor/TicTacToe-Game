@@ -5,6 +5,10 @@ ul {
   list-style-type: none;
 }
 
+header img {
+  max-width: 120px;
+}
+
 .game-board {
   background-color: #414141;
   box-shadow: 12px 10px 10px #52525286;
@@ -14,9 +18,9 @@ ul {
 
 .tile-box {
   background-color: rgb(161, 161, 161);
-  padding: 25px;
-  font-size: 4em;
-  min-height: 150px;
+  padding: 15px;
+  font-size: 3.5em;
+  min-height: 120px;
 }
 
 .active-player {
@@ -40,13 +44,20 @@ ul {
   padding: 50px 0px;
   margin-top: 29px;
   border-radius: 10px;
-  background-color: #808080b7;
-  box-shadow: 8px 8px 10px #52525286;
+  background-color: #6b6b6bc4;
+  box-shadow: 5px 5px 10px #52525286;
 }
 
 .game-over {
-  height: 200px;
-  width: 200px;
-  background-color: #7a3636;
+  height: 600px;
+  width: 100%;
+  border-radius: 20px;
   position: absolute;
+  background-color: #7e7b7bf1;
+  box-shadow: 15px 15px 10px #11111186;
+}
+
+.game-over h1 {
+  padding-top: 50%;
+  width: 100%;
 }

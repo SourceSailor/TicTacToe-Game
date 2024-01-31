@@ -10,7 +10,7 @@ function App() {
     <>
       <Header className="header-img" image={gameLogo}>
         <HeaderContent>
-          <h1>Tic-Tac-Toe</h1>
+          <h1 className="text-white">Tic-Tac-Toe</h1>
         </HeaderContent>
       </Header>
       <div>

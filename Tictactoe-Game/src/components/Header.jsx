@@ -1,4 +1,4 @@
-import "../styles/header-styles.css";
+import "../styles/game-board.css";
 
 export default function Header({ children, image, ...props }) {
   return (

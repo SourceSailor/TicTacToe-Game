@@ -18,6 +18,8 @@ const initialData = [
   { id: 9, symbol: null, row: 3, col: 3 },
 ];
 
+// const initialData = new Array(10).fill({});
+
 export default function GameSection() {
   const [boardTiles, setBoardTiles] = useState(initialData);
   const [activePlayer, setActivePlayer] = useState(true);
@@ -113,7 +115,7 @@ export default function GameSection() {
       firstSquare === thirdSquare
     ) {
       winner = firstSquare;
-      break; // Exit the loop once a winner is found
+      break;
     }
   }
 
@@ -121,6 +123,9 @@ export default function GameSection() {
     <>
       <main className="game-board mx-auto justify-content-center p-5 mt-5 flex-column col-9">
         <section className="d-flex justify-content-center">
+          {/* -------- GAME OVER -------- */}
+          <GameOver player={player} gameOver={winner} />
+
           {/* -------- PLAYER 1 -------- */}
           <Player
             className={`px-5 player-select ${
@@ -140,9 +145,10 @@ export default function GameSection() {
             editPlayerName={() => editPlayerName(1)}
             savePlayerName={(e) => savePlayerName(1, e)}
           />
-        </section>{" "}
-        <GameOver gameOver={winner} />
+        </section>
+
         <section className="d-flex justify-content-center mt-5 ">
+          {/* -------- GAME BOARD -------- */}
           <GameBoard boardTiles={boardTiles} onTileClick={onTileClick} />
         </section>
         <div className="mt-4">
@@ -150,6 +156,7 @@ export default function GameSection() {
         </div>
       </main>
 
+      {/* -------- PLAYER TURNS -------- */}
       <PlayerTurns gameTurns={gameTurns} />
     </>
   );
