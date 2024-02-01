@@ -4,13 +4,14 @@ import HeaderContent from "./components/HeaderContent";
 import GameSection from "./components/GameSection";
 import "bootstrap/dist/css/bootstrap.min.css";
 import gameLogo from "./assets/game-logo.png";
+import "./styles/game-board.css";
 
 function App() {
   return (
     <>
       <Header className="header-img" image={gameLogo}>
         <HeaderContent>
-          <h1 className="text-white">Tic-Tac-Toe</h1>
+          <h1 className="header-title">Tic-Tac-Toe</h1>
         </HeaderContent>
       </Header>
       <div>

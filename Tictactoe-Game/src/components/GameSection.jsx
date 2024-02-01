@@ -124,11 +124,16 @@ export default function GameSection() {
       <main className="game-board mx-auto justify-content-center p-5 mt-5 flex-column col-9">
         <section className="d-flex justify-content-center">
           {/* -------- GAME OVER -------- */}
-          <GameOver player={player} gameOver={winner} />
+          <GameOver
+            resetGame={resetGame}
+            player={player}
+            gameOver={winner}
+            gameTurns={gameTurns}
+          />
 
           {/* -------- PLAYER 1 -------- */}
           <Player
-            className={`px-5 player-select ${
+            className={`player-select ${
               activePlayer ? "active-player" : undefined
             } `}
             player={player[0]}
@@ -138,7 +143,7 @@ export default function GameSection() {
 
           {/* -------- PLAYER 2 -------- */}
           <Player
-            className={`px-5 player-select ${
+            className={`player-select ${
               !activePlayer ? "active-player" : undefined
             }`}
             player={player[1]}

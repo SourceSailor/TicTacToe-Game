@@ -9,6 +9,13 @@ header img {
   max-width: 120px;
 }
 
+.header-title {
+  font-size: 4em;
+  font-weight: 900;
+  color: #ffffff;
+  text-shadow: 5px 5px 2px #00000080;
+}
+
 .game-board {
   background-color: #414141;
   box-shadow: 12px 10px 10px #52525286;
@@ -30,7 +37,6 @@ header img {
 }
 
 .player-select {
-  min-height: 50px;
   padding: 10px;
 }
 
@@ -58,6 +64,7 @@ header img {
 }
 
 .game-over h1 {
-  padding-top: 50%;
+  padding-top: 35%;
   width: 100%;
+  font-weight: 900;
 }

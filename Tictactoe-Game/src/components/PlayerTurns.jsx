@@ -7,7 +7,7 @@ export default function PlayerTurns({ gameTurns }) {
           <h3>
             {gameTurns.map((turn, index) => (
               <li className="my-3" key={index}>
-                {turn.symbol} - Row {turn.row} Column {turn.col}
+                {turn.symbol}: Row {turn.row}, Column {turn.col}
               </li>
             ))}
           </h3>
